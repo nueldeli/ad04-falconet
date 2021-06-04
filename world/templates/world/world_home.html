@@ -7,5 +7,28 @@
 		<input class="form-control me-2" type="search" placeholder="Search location" aria-label="Search" name="searched">
 		<button class="btn btn-primary" type="submit">Search</button>
 	</form>
+
+	<hr>
+	<p>Click here to get your coordinate</p>
+
+	<button class="btn btn-primary" onclick="getCoordinate()">Click here</button>
+
+	<p id="demoLocation"></p>
+
+	<script>
+		var x = document.getElementById("demoLocation");
+
+		function getCoordinate(){
+			if (navigator.geolocation){
+				navigator.geolocation.watchPosition(showPosition)
+			} else {
+				x.innerHTML = 'Not found'
+			}
+		}
+
+		function showPosition(position){
+			x.innerHTML = 'Latitude:' + position.coords.latitude + '<br>Longitude:' + position.coords.longitude
+		}
+	</script>
 </div>
 {% endblock %}
