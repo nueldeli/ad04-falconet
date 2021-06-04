@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="custom-div">
+	{% if searched %}
+	<p>You searched for {{ searched }}</p>
+		{% for location in locations %}
+			{{ location.coordinate }}
+			{{ location.author }}
+			{{ location.content }}
+		{% endfor %}
+	{% else %}
+	<p>You haven't searched for location</p>
+	{% endif %}
+</div>
+{% endblock %}
