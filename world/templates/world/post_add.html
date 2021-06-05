@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="custom-div">
+	<form method="POST">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button class="btn btn-primary">Submit</button>
+	</form>
+
+	<script>
+		var name = '{{ user.id }}'
+		document.getElementById('writer').value = name;
+
+		function showLocation(position) {
+            var latitude = position.coords.latitude;
+            var longitude = position.coords.longitude;
+            document.getElementById('lat').value = latitude;
+            document.getElementById('long').value = longitude;
+           	alert("Latitude : " + latitude + " Longitude: " + longitude);
+         }
+
+		function getCoordinate(){
+			if (navigator.geolocation){
+				navigator.geolocation.getCurrentPosition(showLocation);
+			} else {
+				altert('Browser does not support geolocation')
+			}
+		}
+
+	</script>
+</div>
+{% endblock %}
